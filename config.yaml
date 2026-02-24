@@ -1,0 +1,23 @@
+llm:
+  provider: "ollama"
+  endpoint: "http://localhost:11434"
+  model: "mistral:7b-instruct"
+  temperature: 0.1
+  max_tokens: 1024
+
+security:
+  max_execution_time: 30
+  allowed_operations:
+    - "add"
+    - "subtract"
+    - "multiply"
+    - "divide"
+    - "sqrt"
+    - "power"
+    - "mean"
+    - "median"
+  sandbox_enabled: true
+
+logging:
+  level: "INFO"
+  file: "logs/agent.log"

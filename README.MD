@@ -547,7 +547,7 @@ or send USDT to address:
 
 ### Way #2 - Wise international Transfer
 
-![Coffee Wise QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/qr_code_pix_bradesco.png)
+![Coffee Wise QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/wise_qrcode.jpeg)
 
 Or sent tip for address
 

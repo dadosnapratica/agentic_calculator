@@ -16,108 +16,106 @@
 > 🇧🇷 [Versão Original em Português (Brasil)](README_BR.md)  
 > **Aviso:** Esta é a versão original da documentação técnica. Para máxima precisão conceitual e técnica, utilize preferencialmente esta versão.
 
-> 🇺🇸 [English Version](README.md)  
-> **Disclaimer:** This documentation is also available in English. For official technical reference, consult the Portuguese or English versions.
+> 🇺🇸 [Versão em Inglês](README.md)  
+> **Aviso:** Esta documentação também está disponível em inglês. Para referência técnica oficial, consulte a versão em português ou em inglês.
 
 > 🇪🇸 [Documentación en Español](README_ES.md)  
-> **Aviso:** La documentación también está disponible en español. Para mayor precisión técnica, consulte la versión original en portugués o la versión en inglés.
+> **Aviso:** A documentação também está disponível em espanhol. Para maior precisão técnica, consulte a versão original em português ou a versão em inglês.
 
 ---
 
 
 ## 🎯 O que é este projeto?
 
-This project is **not just a calculator**—it's a **complete reference implementation** of modern agentic architecture patterns.
+Este projeto não é apenas uma calculadora — é uma implementação de referência completa dos padrões modernos de arquitetura agentic.
 
-**Think of it as:**
-- 📚 An educational framework for understanding AI agent orchestration
-- 🏗️ A production-ready foundation for building complex autonomous systems
-- 🔒 A privacy-first alternative to cloud-based AI services
-- 💡 A blueprint for trading bots, automation pipelines, and intelligent assistants
+Pense nisso como:
+- 📚 Um framework educacional para entender a orquestração de agentes de IA
+- 🏗️ Uma base pronta para produção para construir sistemas autônomos complexos
+- 🔒 Uma alternativa com foco em privacidade aos serviços de IA na nuvem
+- 💡 Um roteiro para bots de negociação, pipelines de automação e assistentes inteligentes
 
-### What Makes It "Agentic"?
+### O que o torna "Agentic"?
 
-Traditional programs follow fixed logic: `if this, then that`.
+Programas tradicionais seguem lógica fixa: `se isto, então aquilo`.
 
-**Agentic systems** use AI to:
-1. **Understand** natural language intent
-2. **Plan** multi-step task decomposition
-3. **Orchestrate** specialized agents
-4. **Execute** securely with validation
-5. **Learn** from feedback (future enhancement)
+Sistemas "agentic" usam IA para:
+1. Entender intenção em linguagem natural
+2. Planejar a decomposição de tarefas em múltiplos passos
+3. Orquestrar agentes especializados
+4. Executar com segurança e validação
+5. Aprender com feedback (melhoria futura)
 
 ```
-User: "Calculate the average of 10, 20, 30 and then square it"
+Usuário: "Calcule a média de 10, 20, 30 e então eleve ao quadrado"
 
-Traditional Code:          Agentic System:
-❌ Needs explicit         ✅ LLM understands intent
-   function for this      ✅ Plans: [mean() → square()]
-❌ Breaks on variations   ✅ Adapts to natural language
-❌ No reasoning           ✅ Generates execution plan
+Código Tradicional:        Sistema Agentic:
+❌ Precisa de função       ✅ O LLM entende a intenção
+  explícita para isso     ✅ Planeja: [mean() → square()]
+❌ Falha com variações     ✅ Se adapta à linguagem natural
+❌ Sem capacidade de       ✅ Gera um plano de execução
+  raciocínio
 ```
 
 ---
 
-## ✨ Principais Funcionalidades
-
-### 🧠 Natural Language Understanding
-```bash
-Input:  "Add 15 and 25, then multiply by 2"
+### ✨ Principais Funcionalidades
+Input:  "Some 15 e 25, então multiplique por 2"
 Output: 80.0
 
-# Behind the scenes:
-# LLM converts → [add(15,25), multiply($result_0, 2)]
+# Nos bastidores:
+# LLM converte → [add(15,25), multiply($result_0, 2)]
 ```
 
-### 🎯 Multi-Agent Orchestration
+### 🎯 Orquestração Multiagente
 ```python
-# Specialists handle specific domains
+# Especialistas cuidam de domínios específicos
 BasicOperations     → +, -, ×, ÷
 AdvancedOperations  → √, ^, log
 StatisticsOps       → mean, median, σ
 ```
 
-### 🔒 Secure Sandbox Execution
+### 🔒 Execução Segura em Sandbox
 ```yaml
-# Whitelist-based security
+# Segurança baseada em whitelist
 allowed_operations:
   - add
   - multiply
-  # ❌ system_call - BLOCKED
-  # ❌ file_delete - BLOCKED
+  # ❌ system_call - BLOQUEADO
+  # ❌ file_delete - BLOQUEADO
 ```
 
-### 📊 Modern UI with Streamlit
-- **Web Interface**: Beautiful, responsive, real-time
-- **CLI Mode**: For automation and scripting
-- **API-Ready**: Extend to REST endpoints
+### 📊 UI Moderna com Streamlit
+- **Interface Web**: Bonita, responsiva, em tempo real
+- **Modo CLI**: Para automação e scripts
+- **Pronta para API**: Fácil extensão para endpoints REST
 
 ---
 
 ## 🏗️ Visão Geral da Arquitetura
 
-### High-Level Flow
+### Fluxo de Alto Nível
 
 ```
 ┌─────────────────────────────────────────────┐
-│ User Input (Natural Language)               │
-│ "Calculate mean of 10,20,30 and square it"  │
+│ Entrada do Usuário (Linguagem Natural)     │
+│ "Calcule a média de 10,20,30 e eleve ao quadrado" │
 └──────────────────┬──────────────────────────┘
                    │
                    ▼
 ┌─────────────────────────────────────────────┐
-│         Orchestrator (Brain)                │
-│ • Receives input                            │
-│ • Calls LLM to generate plan                │
-│ • Validates security                        │
-│ • Delegates to specialists                  │
+│         Orquestrador (Cérebro)              │
+│ • Recebe a entrada                           │
+│ • Chama o LLM para gerar o plano             │
+│ • Valida segurança                           │
+│ • Delegar para especialistas                 │
 └──────────────┬──────────────────────────────┘
                │
     ┌──────────┼──────────┐
     ▼          ▼          ▼
 ┌────────┐ ┌────────┐ ┌────────┐
-│ Basic  │ │Advanced│ │ Stats  │
-│  Ops   │ │  Ops   │ │  Ops   │
+│Operações│ │Operações│ │Operações│
+│Básicas  │ │Avançadas│ │Estatísticas│
 └────────┘ └────────┘ └────────┘
                │
                ▼
@@ -127,70 +125,70 @@ allowed_operations:
         └─────────────┘
 ```
 
-### Why This Architecture?
+### Por que esta arquitetura?
 
-| Pattern | Benefit | Example |
-|---------|---------|---------|
-| **Separation of Concerns** | Each component has one job | Orchestrator coordinates, Specialists execute |
-| **Open/Closed Principle** | Extend without modifying core | Add new specialist = 5 lines of code |
-| **Dependency Injection** | Testable and flexible | Mock LLM for unit tests |
-| **Fail-Safe Design** | Graceful error handling | Invalid operation? System logs and continues |
+| Padrão | Benefício | Exemplo |
+|--------|----------:|--------|
+| **Separação de Responsabilidades** | Cada componente tem uma função | Orquestrador coordena, Especialistas executam |
+| **Princípio Open/Closed** | Estende sem modificar o núcleo | Adicionar especialista = poucas linhas de código |
+| **Injeção de Dependência** | Testável e flexível | Mock do LLM em testes unitários |
+| **Design Fail-Safe** | Tratamento de erro gracioso | Operação inválida? Sistema registra e continua |
 
-**📖 For deep dive, see [ARCHITECTURE.md](ARCHITECTURE.md)**
+**📖 Para aprofundar, veja [ARCHITECTURE.md](ARCHITECTURE.md)**
 
 ---
 
 ## 🚀 Início Rápido (5 Minutos)
 
-### Prerequisites
+### Pré-requisitos
 
 - **Python 3.9+**
-- **8GB RAM** (16GB recommended)
-- **5GB disk space** (for LLM model)
+- **8GB RAM** (16GB recomendado)
+- **5GB de espaço em disco** (para o modelo LLM)
 
-### Installation
+### Instalação
 
-#### 1. Install Ollama (LLM Server)
+#### 1. Instalar o Ollama (Servidor LLM)
 
 ```bash
 # macOS / Linux
 curl -fsSL https://ollama.ai/install.sh | sh
 
 # Windows
-# Download from https://ollama.ai/download
+# Baixe em https://ollama.ai/download
 ```
 
-#### 2. Pull the Model
+#### 2. Baixar o Modelo
 
 ```bash
 ollama pull mistral:7b-instruct
 ```
 
-#### 3. Clone and Setup
+#### 3. Clonar e Configurar
 
 ```bash
-# Clone repository
+# Clonar repositório
 git clone https://github.com/yourusername/agentic-calculator.git
 cd agentic-calculator
 
-# Create virtual environment
+# Criar ambiente virtual
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Install dependencies
+# Instalar dependências
 pip install -r requirements.txt
 ```
 
-#### 4. Run!
+#### 4. Executar!
 
 ```bash
-# Terminal 1: Start Ollama (if not auto-started)
+# Terminal 1: Iniciar Ollama (se não iniciar automaticamente)
 ollama serve
 
-# Terminal 2: Run the calculator
+# Terminal 2: Rodar a calculadora
 python main.py
 
-# Or use Streamlit UI
+# Ou usar a UI Streamlit
 streamlit run app.py
 ```
 
@@ -198,7 +196,7 @@ streamlit run app.py
 
 ## 💡 Exemplos de Uso
 
-### CLI Mode
+### Modo CLI
 
 ```bash
 $ python main.py
@@ -216,7 +214,7 @@ $ python main.py
 👋 Até logo!
 ```
 
-### Programmatic Use
+### Modo Programático
 
 ```python
 from core.orchestrator import CalculatorOrchestrator
@@ -230,13 +228,13 @@ print(result['steps_executed'])  # 2
 print(result['intermediate_results'])  # [8.0, 16.0]
 ```
 
-### Complex Multi-Step
+### Multi-etapa Complexo
 
 ```python
-# Input
+# Entrada
 "Calculate mean of 100, 200, 300, then take square root, then divide by 2"
 
-# LLM generates plan:
+# LLM gera o plano:
 {
   "steps": [
     {"operation": "mean", "args": [100, 200, 300]},      # → 200
@@ -245,53 +243,53 @@ print(result['intermediate_results'])  # [8.0, 16.0]
   ]
 }
 
-# Final result: 7.07
+# Resultado final: 7.07
 ```
 
 ---
 
 ## 🎓 Para Iniciantes em Arquitetura Agentic
 
-### What You'll Learn
+### O que você vai aprender
 
-1. **LLM Orchestration**: How to use LLMs as "brains" for task planning
-2. **Agent Design Patterns**: Strategy, Factory, Observer applied to AI
-3. **Prompt Engineering**: Crafting prompts that generate structured outputs
-4. **Secure Execution**: Sandboxing and validation in autonomous systems
-5. **Modular Architecture**: Building extensible AI systems
+1. **Orquestração com LLMs**: Como usar LLMs como "cérebros" para planejamento de tarefas
+2. **Padrões de Projeto para Agentes**: Strategy, Factory, Observer aplicados à IA
+3. **Prompt Engineering**: Como criar prompts que gerem saídas estruturadas
+4. **Execução Segura**: Sandbox e validação em sistemas autônomos
+5. **Arquitetura Modular**: Construir sistemas extensíveis de IA
 
-### Learning Path
+### Caminho de Aprendizado
 
 ```
-1. Run the examples → Understand the flow
-2. Read ARCHITECTURE.md → Grasp the design
-3. Add a new specialist → Practice extension
-4. Modify prompts → Experiment with LLM behavior
-5. Build your own agent → Apply to your domain
+1. Execute os exemplos → Entenda o fluxo
+2. Leia ARCHITECTURE.md → Compreenda o design
+3. Adicione um novo especialista → Pratique a extensão
+4. Modifique prompts → Experimente o comportamento do LLM
+5. Construa seu próprio agente → Aplique ao seu domínio
 ```
 
-### Key Concepts Explained
+### Conceitos-chave Explicados
 
-#### 🧠 What is an "Orchestrator"?
+#### 🧠 O que é um "Orquestrador"?
 
-Think of it like a **conductor of an orchestra**:
-- Doesn't play instruments (doesn't do calculations)
-- Reads the sheet music (interprets user intent via LLM)
-- Tells each musician when to play (delegates to specialists)
-- Ensures harmony (validates and consolidates results)
+Pense nele como um **maestro de uma orquestra**:
+- Não toca instrumentos (não faz cálculos)
+- Lê a partitura (interpreta a intenção do usuário via LLM)
+- Diz a cada músico quando tocar (delegar para especialistas)
+- Garante harmonia (valida e consolida resultados)
 
-#### 🎯 What is a "Specialist"?
+#### 🎯 O que é um "Especialista"?
 
-A **domain expert** that does one thing well:
+Um **especialista de domínio** que faz bem uma coisa:
 ```python
-# BAD: God object doing everything
+# RUIM: Objeto "Deus" fazendo tudo
 class Calculator:
     def add(self, a, b): ...
     def subtract(self, a, b): ...
-    def plot_graph(self, data): ...  # Unrelated!
-    def send_email(self, msg): ...   # Unrelated!
+    def plot_graph(self, data): ...  # Não relacionado!
+    def send_email(self, msg): ...   # Não relacionado!
 
-# GOOD: Focused specialists
+# BOM: Especialistas focados
 class BasicOperations:
     def add(self, a, b): return a + b
     def subtract(self, a, b): return a - b
@@ -300,32 +298,32 @@ class VisualizationOps:
     def plot_graph(self, data): ...
 ```
 
-#### 🔗 What is "$result_N"?
+#### 🔗 O que é "$result_N"?
 
-A reference to previous step results:
+Uma referência a resultados de passos anteriores:
 ```json
 {
   "steps": [
-    {"operation": "add", "args": [5, 3]},           // Step 0 → 8
-    {"operation": "multiply", "args": ["$result_0", 2]}  // Use 8 from step 0
+    {"operation": "add", "args": [5, 3]},           // Passo 0 → 8
+    {"operation": "multiply", "args": ["$result_0", 2]}  // Usa 8 do passo 0
   ]
 }
 ```
 
-This enables **chaining operations** without hardcoding intermediate values.
+Isso permite **encadear operações** sem hardcode de valores intermediários.
 
 ---
 
 ## 🧪 Testes
 
 ```bash
-# Run all tests
+# Execute todos os testes
 pytest tests/
 
-# With coverage
+# Com coverage
 pytest --cov=core --cov=specialists tests/
 
-# Specific test
+# Teste específico
 pytest tests/test_orchestrator.py -v
 ```
 
@@ -333,23 +331,23 @@ pytest tests/test_orchestrator.py -v
 
 ## 🔧 Configuração
 
-### Customize Operations
+### Personalizar Operações
 
-Edit `config.yaml`:
+Edite `config.yaml`:
 
 ```yaml
 security:
   allowed_operations:
     - "add"
     - "multiply"
-    - "sin"        # Add trigonometry
-    - "factorial"  # Add combinatorics
+    - "sin"        # Adicionar trigonometria
+    - "factorial"  # Adicionar combinatória
 ```
 
-### Add New Specialist
+### Adicionar Novo Especialista
 
 ```python
-# 1. Create specialist
+# 1. Criar especialista
 # specialists/trigonometry.py
 import math
 
@@ -358,33 +356,33 @@ class TrigonometryOperations:
     def sin(x):
         return math.sin(math.radians(x))
 
-# 2. Register in orchestrator
+# 2. Registrar no orquestrador
 # core/orchestrator.py
 from specialists.trigonometry import TrigonometryOperations
 
 self.specialists['sin'] = TrigonometryOperations.sin
 ```
 
-That's it! No core code changes needed. 🎉
+Pronto! Nenhuma alteração no código núcleo necessária. 🎉
 
 ---
 
 ## 🌟 Aplicações no Mundo Real
 
-This architecture scales to production systems:
+Esta arquitetura escala para sistemas de produção:
 
-### 🤖 Algorithmic Trading
+### 🤖 Trading Algorítmico
 ```python
-# Replace math specialists with trading specialists
+# Substitua especialistas matemáticos por especialistas de trading
 class TradingOperations:
     def analyze_volatility(symbol): ...
     def execute_order(symbol, quantity): ...
     def calculate_risk(portfolio): ...
 
-# Same orchestrator, different domain!
+# Mesmo orquestrador, domínio diferente!
 ```
 
-### 📹 Content Generation Pipeline
+### 📹 Pipeline de Geração de Conteúdo
 ```python
 class ContentOperations:
     def generate_script(topic): ...
@@ -393,7 +391,7 @@ class ContentOperations:
     def edit_video(assets): ...
 ```
 
-### 📊 Data Analysis Workflows
+### 📊 Workflows de Análise de Dados
 ```python
 class DataOperations:
     def query_database(sql): ...
@@ -402,180 +400,180 @@ class DataOperations:
     def visualize_results(predictions): ...
 ```
 
-**Same patterns. Different specialists. Infinite possibilities.**
+**Mesmos padrões. Diferentes especialistas. Possibilidades infinitas.**
 
 ---
 
 ## 📊 Performance
 
-| Metric | Value | Notes |
-|--------|-------|-------|
-| **Average Latency** | 1-2s | Single operation |
-| **Multi-Step (3 ops)** | 2-3s | Including LLM planning |
-| **Memory Usage** | ~500MB | With 7B model loaded |
-| **Success Rate** | 98%+ | On valid operations |
+| Métrica | Valor | Observações |
+|--------|-------|-------------|
+| **Latência média** | 1-2s | Operação única |
+| **Multi-etapa (3 ops)** | 2-3s | Inclui planejamento do LLM |
+| **Uso de memória** | ~500MB | Com modelo 7B carregado |
+| **Taxa de sucesso** | 98%+ | Em operações válidas |
 
-### Optimization Tips
+### Dicas de Otimização
 
-- Use **7B model** for speed (current default)
-- Use **13B model** for better reasoning (slower)
-- Enable **GPU** for 3-5x faster inference
-- Add **Redis cache** for repeated queries
+- Use **modelo 7B** para velocidade (default atual)
+- Use **modelo 13B** para melhor raciocínio (mais lento)
+- Ative **GPU** para inferência 3-5x mais rápida
+- Adicione **cache Redis** para consultas repetidas
 
 ---
 
 ## 🗺️ Roadmap
 
-### ✅ v1.0 (Current)
-- [x] Core orchestration
-- [x] Basic math operations
-- [x] Streamlit UI
-- [x] Security sandbox
-- [x] Complete documentation
+### ✅ v1.0 (Atual)
+- [x] Orquestração core
+- [x] Operações matemáticas básicas
+- [x] UI em Streamlit
+- [x] Sandbox de segurança
+- [x] Documentação completa
 
-### 🚧 v1.1 (Next)
+### 🚧 v1.1 (Próximo)
 - [ ] REST API
-- [ ] Variable support (`x = 10`)
-- [ ] Operation history
-- [ ] More specialists (trig, stats)
-- [ ] Docker deployment
+- [ ] Suporte a variáveis (`x = 10`)
+- [ ] Histórico de operações
+- [ ] Mais especialistas (trig, stats)
+- [ ] Deploy com Docker
 
-### 🔮 v2.0 (Future)
-- [ ] Multi-LLM support
-- [ ] Execution graph visualization
-- [ ] Conversational memory
-- [ ] Plugin system
+### 🔮 v2.0 (Futuro)
+- [ ] Suporte a múltiplos LLMs
+- [ ] Visualização do grafo de execução
+- [ ] Memória conversacional
+- [ ] Sistema de plugins
 
 ---
 
 ## 🤝 Contribuindo
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contribuições são bem-vindas! Veja [CONTRIBUTING.md](CONTRIBUTING.md) para orientações.
 
-**Good first issues:**
-- Add trigonometric operations
-- Improve error messages
-- Add more test cases
-- Translate UI to other languages
-- Create Docker setup
+**Bons primeiros problemas:**
+- Adicionar operações trigonométricas
+- Melhorar mensagens de erro
+- Adicionar mais casos de teste
+- Traduzir a UI para outros idiomas
+- Criar setup Docker
 
 ---
 
 ## 📚 Documentação
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Deep dive into design decisions
-- **[EXAMPLES.md](docs/EXAMPLES.md)** - Advanced use cases
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Mergulho profundo nas decisões de design
+- **[EXAMPLES.md](docs/EXAMPLES.md)** - Casos de uso avançados
 
 ---
 
 ## 🐛 Solução de Problemas
 
-### Common Issues
+### Problemas Comuns
 
-**Problem**: `Connection refused` to Ollama
+**Problema**: `Connection refused` ao Ollama
 
 ```bash
-# Solution: Start Ollama server
+# Solução: Inicie o servidor Ollama
 ollama serve
 ```
 
-**Problem**: LLM returns invalid JSON
+**Problema**: LLM retorna JSON inválido
 
 ```yaml
-# Solution: Lower temperature in config.yaml
+# Solução: Reduza a temperatura em config.yaml
 llm:
-  temperature: 0.0  # More deterministic
+  temperature: 0.0  # Mais determinístico
 ```
 
-**Problem**: Operation blocked by sandbox
+**Problema**: Operação bloqueada pelo sandbox
 
 ```yaml
-# Solution: Add to whitelist in config.yaml
+# Solução: Adicione à whitelist em config.yaml
 security:
   allowed_operations:
     - "your_operation"
 ```
 
-**More issues?** Check [Issues](https://github.com/yourusername/agentic-calculator/issues) or open a new one.
+**Mais problemas?** Veja [Issues](https://github.com/yourusername/agentic-calculator/issues) ou abra uma nova.
 
 ---
 
 ## 📄 Licença
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE).
 
-**TL;DR**: You can use this commercially, modify it, distribute it—just keep the copyright notice.
+**Resumo**: Você pode usar comercialmente, modificar e distribuir — apenas mantenha o aviso de copyright.
 
 ---
 
 ## 🙏 Agradecimentos
 
-- **[Ollama](https://ollama.ai/)** - Making local LLMs accessible
-- **[Mistral AI](https://mistral.ai/)** - Excellent open-weight model
-- **[Streamlit](https://streamlit.io/)** - Rapid UI development
-- **Open Source Community** - For inspiration and tools
+- **[Ollama](https://ollama.ai/)** - Tornando LLMs locais acessíveis
+- **[Mistral AI](https://mistral.ai/)** - Excelente modelo de pesos abertos
+- **[Streamlit](https://streamlit.io/)** - Desenvolvimento rápido de UI
+- **Comunidade Open Source** - Pela inspiração e ferramentas
 
 ---
 
 ## Notas Finais
 
-This project was created as an **educational initiative** demonstrating how Python can be applied to real-world data analysis and how **Artificial Intelligence** can enhance analytical workflows.
+Este projeto foi criado como uma **iniciativa educacional** demonstrando como Python pode ser aplicado à análise de dados do mundo real e como a **Inteligência Artificial** pode aprimorar fluxos analíticos.
 
-🌟 **Feel free to contribute and improve this project!**
+🌟 **Sinta-se à vontade para contribuir e melhorar este projeto!**
 
 
-## Tips 
+## Dicas
 
-We hope you find our services helpful and enjoyable! If you feel like showing some extra appreciation, why not buy us a coffee? 
+Esperamos que nossos serviços sejam úteis e agradáveis! Se quiser demonstrar um pouco de apreço, que tal comprar-nos um café?
 
-🍵 Your support not only energizes our team but also helps us keep improving what we do.
+🍵 Seu apoio não só energiza a equipe como também nos ajuda a continuar melhorando.
 
-To make a small contribution, you can send us a coffee's worth of USDT or Brazilian Instant Payment (PIX) to our QR code. Every coffee counts and keeps us brewing more ideas!
+Para uma pequena contribuição, você pode enviar USDT ou um pagamento instantâneo PIX para o nosso QR code. Cada cafezinho conta!
 
-### Way #1 - USDT coffee:
+### Forma #1 - Café em USDT:
 
 ![Coffee QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/qr_code_usdt_enus_200px.png)
 
-or send USDT to address:
+ou envie USDT para o endereço:
 ```text
 0x3db4d1dd10b60c278f27bd1b2e2bd888d0f99f85
 ```
 
-1. **Scan the QR Code:** Open your crypto wallet and scan our USDT QR code.
-2. **Enter the amount:** The cost of a coffee - usually around $3 to $5.
-3. **Send your support:** Hit send and make our day!
+1. **Escaneie o QR Code:** Abra sua carteira cripto e escaneie o QR code de USDT.
+2. **Digite o valor:** O preço de um café — geralmente entre $3 e $5.
+3. **Envie seu apoio:** Confirme o envio e nos faça felizes!
 
-### Way #2 - Wise international Transfer
+### Forma #2 - Transferência internacional via Wise
 
-![Coffee Wise QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/qr_code_pix_bradesco.png)
+![Coffee Wise QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/wise_qrcode.jpeg)
 
-Or sent tip for address
+Ou envie pela URL
 
 ```
 https://wise.com/pay/me/flavion156
 ```
 
-### Way #3 - Brasilian PIX coffee:
+### Forma #3 - Café via PIX (Brasil):
 
 ![Coffee QR Code](https://raw.githubusercontent.com/dadosnapratica/buy_a_coffe_qrcodes/refs/heads/main/qr_code_pix_bradesco.png)
 
-1. **Scan the QR Code:** Open your bank account app and scan our PIX QR code.
-2. **Enter the amount:** The cost of a coffee - usually around $3 to $5.
-3. **Send your support:** Hit send and make our day!
+1. **Escaneie o QR Code:** Abra o app do seu banco e escaneie o QR code PIX.
+2. **Digite o valor:** Entre R$3 e R$25 (ou o que preferir).
+3. **Envie seu apoio:** Confirme o pagamento e obrigado!
 
-PIX is a digital payment system in Brazil that allows instant payments 24/7 via mobile phones. If you found this project helpful, please consider buying me a coffee.
+PIX é um sistema de pagamentos instantâneos no Brasil disponível 24/7. Se este projeto foi útil, considere comprar-me um café.
 
 ---
 
 ## Autor
 
-**Flavio Lopes** Spreading practical data knowledge for decision making.
+**Flavio Lopes** — Compartilhando conhecimento prático de dados para apoio à tomada de decisão.
 
 --- 
 
-# 📬 Contact
+# 📬 Contato
 
-Questions, suggestions, or improvements? Contact me or contribute directly to the repository.
+Dúvidas, sugestões ou melhorias? Entre em contato ou contribua diretamente no repositório.
 
 - GitHub: https://github.com/orgs/dadosnapratica  
 - LinkedIn: https://www.linkedin.com/in/flavionlopes/  
@@ -585,21 +583,21 @@ Questions, suggestions, or improvements? Contact me or contribute directly to th
 
 ---
 
-Thank you once again for your incredible support and for being a part of our community. Your contribution fuels our passion and commitment.
-⭐ Keep learning. Keep building. Keep sharing knowledge. ⭐ 
+Obrigado mais uma vez pelo apoio incrível e por fazer parte da nossa comunidade. Sua contribuição alimenta nossa paixão e compromisso.
+⭐ Continue aprendendo. Continue construindo. Continue compartilhando conhecimento. ⭐ 
 
 ---
 
 
-## 🌟 Star History
+## 🌟 Histórico de Stars
 
-If this project helped you, consider giving it a ⭐!
+Se este projeto te ajudou, considere dar um ⭐!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/agentic-calculator&type=Date)](https://star-history.com/#yourusername/agentic-calculator&Date)
+[![Gráfico de Star History](https://api.star-history.com/svg?repos=yourusername/agentic-calculator&type=Date)](https://star-history.com/#yourusername/agentic-calculator&Date)
 
 ---
 
-## 📈 GitHub Stats
+## 📈 Estatísticas do GitHub
 
 ![GitHub stars](https://img.shields.io/github/stars/dadosnapratica/agentic_calculator?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/dadosnapratica/agentic_calculator?style=social)
@@ -609,13 +607,13 @@ If this project helped you, consider giving it a ⭐!
 
 <div align="center">
 
-**Built with ❤️ for the AI community**
+**Construído com ❤️ para a comunidade de IA**
 
 [⭐ Star](https://github.com/dadosnapratica/agentic_calculator) •
 [🍴 Fork](https://github.com/dadosnapratica/agentic_calculator/fork) •
-[🐛 Report Bug](https://github.com/dadosnapratica/agentic_calculator/issues)
+[🐛 Reportar Bug](https://github.com/dadosnapratica/agentic_calculator/issues)
 
 
-Made by [Flavio Lopes](https://github.com/fnldesign) | 2026
+Feito por [Flavio Lopes](https://github.com/fnldesign) | 2026
 
 </div>
